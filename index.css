@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 500px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.numbers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  height: 80%;
+  justify-content: space-between;
+}
+
+button {
+  flex-basis: 23%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  border: 2px solid lightgray;
+}
+
+button,
+.display {
+  margin: 3px 3px;
+  border-radius: 7px;
+}
+
+.display {
+  background-color: lightsteelblue;
+  text-align: right;
+  height: 20%;
+  padding: 5% 7%;
+}
