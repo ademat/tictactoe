@@ -60,3 +60,21 @@ const announce_winner = (index) => {
     }
   }
 }
+
+const generate_random_index = () => {
+  return Math.floor(Math.random() * 16);
+}
+
+const play = () => {
+  let i = true;
+  while (i) {
+    const index = generate_random_index();
+    if (gamePlan[index] === 0) {
+      gamePlan[index] = 1;
+      onTurn = -1;
+      const square_elm = document.querySelector(`.square:nth-of-type(${index + 1})`);
+      square_elm.classList.add('square--cross');
+      i = false;
+    }
+  }
+}
