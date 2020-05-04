@@ -5,7 +5,7 @@ let onTurn = 1;
 let gamePlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 const squareClick = (event) => {
-  let index = event.target.dataset.index;
+  const index = event.target.dataset.index;
   if (gamePlan[index] === 0) {
     if (onTurn === 1) {
       gamePlan[index] = 1;
@@ -16,6 +16,7 @@ const squareClick = (event) => {
       onTurn = 1;
       event.target.classList.add('square--circle');
     }
+    console.log('Ahoj' + gamePlan);
     announce_winner(score(gamePlan));
   } else {
     alert('Vyberte prazdne pole.')
@@ -44,19 +45,36 @@ const score = (gamePlan) => {
     if (sum === -4) {
       return -1;
     }
-    if (!gamePlan.includes(0)) {
-      return 0;
-    }
   }
   console.log(gamePlan);
 }
 
 const announce_winner = (index) => {
-  if (index === 1) {
-    alert('Vyhral krizek!');
-  } else if (index === -1) {
-    alert('Vyhralo kolecko!');
-  } else if (index === 0) {
-    alert('Remiza!');
+  if (index) {
+    const game_status_elm = document.querySelector('.game-status');
+    game_status_elm.classList.add('end--game');
+    if (index === 1) {
+      game_status_elm.textContent = 'Zvitezil krizek';
+    } else if (index === -1) {
+      game_status_elm.textContent = 'Zvitezilo kolecko';
+    }
+  }
+}
+
+const generate_random_index = () => {
+  return Math.floor(Math.random() * 16);
+}
+
+const play = () => {
+  let i = true;
+  while (i) {
+    const index = generate_random_index();
+    if (gamePlan[index] === 0) {
+      gamePlan[index] = 1;
+      onTurn = -1;
+      const square_elm = document.querySelector(`.square:nth-of-type(${index + 1})`);
+      square_elm.classList.add('square--cross');
+      i = false;
+    }
   }
 }
