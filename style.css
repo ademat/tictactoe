@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  font-size: 40px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("img/bg.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0px;
+}
+
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(8rem + 16px);
+  margin-bottom: 3rem;
+}
+
+.square {
+  background-color: black;
+  background-size: contain;
+  width: 2rem;
+  height: 2rem;
+  margin: 2px;
+  box-shadow: 0 0 4px lightblue;
+}
+
+.square--cross {
+  background-image: url("img/cross.svg");
+}
+
+.square--circle {
+  background-image: url("img/circle.svg");
+}
+
+.game-status {
+  width: calc(8rem + 16px);
+  height: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 0.4rem;
+  color: gainsboro;
+}
+
+.end--game {
+  background-color: rgb(43, 67, 90);
+}
