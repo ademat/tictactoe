@@ -1,6 +1,6 @@
 'use strict';
 
-let onTurn = 1;
+let onTurn = -1;
 
 let gamePlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -15,8 +15,8 @@ const squareClick = (event) => {
       gamePlan[index] = -1;
       onTurn = 1;
       event.target.classList.add('square--circle');
+      pc_play();
     }
-    console.log('Ahoj' + gamePlan);
     announce_winner(score(gamePlan));
   } else {
     alert('Vyberte prazdne pole.')
@@ -46,7 +46,6 @@ const score = (gamePlan) => {
       return -1;
     }
   }
-  console.log(gamePlan);
 }
 
 const announce_winner = (index) => {
@@ -61,20 +60,53 @@ const announce_winner = (index) => {
   }
 }
 
-const generate_random_index = () => {
-  return Math.floor(Math.random() * 16);
+const generate_random_index = (length) => {
+  return Math.floor(Math.random() * length);
 }
 
-const play = () => {
-  let i = true;
-  while (i) {
-    const index = generate_random_index();
-    if (gamePlan[index] === 0) {
-      gamePlan[index] = 1;
-      onTurn = -1;
-      const square_elm = document.querySelector(`.square:nth-of-type(${index + 1})`);
-      square_elm.classList.add('square--cross');
-      i = false;
+// const pc_play = () => {
+//   let i = true;
+//   while (i) {
+//     const index = generate_random_index(16);
+//     if (gamePlan[index] === 0) {
+//       gamePlan[index] = 1;
+//       onTurn = -1;
+//       const square_elm = document.querySelector(`.square:nth-of-type(${index + 1})`);
+//       square_elm.classList.add('square--cross');
+//       i = false;
+//     }
+//   }
+// }
+
+const test_pattern = (pattern) => {
+  for (let i = 0; i < pattern.length; i++) {
+    if (pattern[i] === 1) {
+      if (gamePlan[i] === -1) {
+        return false;
+      }
     }
   }
+  return true;
+}
+
+let pc_pattern = patterns[generate_random_index(23)];
+
+const pc_play = () => {
+  while (!test_pattern(pc_pattern)) {
+    pc_pattern = patterns[generate_random_index(23)];
+  };
+  console.log(pc_pattern);
+  for (let i = 0; i < pc_pattern.length; i++) {
+    if (pc_pattern[i] === 1) {
+      if (gamePlan[i] === 0) {
+        gamePlan[i] = 1;
+        onTurn = -1;
+        const square_elm = document.querySelector(`.square:nth-of-type(${i + 1})`);
+        square_elm.classList.add('square--cross');
+        break;
+      }
+    }
+  }
+
+
 }
