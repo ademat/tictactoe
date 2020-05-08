@@ -4,10 +4,6 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   background-image: url("img/bg.jpg");
   background-size: cover;
@@ -16,11 +12,18 @@ body {
   margin: 0px;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .field {
   display: flex;
   flex-wrap: wrap;
   width: calc(8rem + 16px);
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .square {
@@ -52,4 +55,15 @@ body {
 
 .end--game {
   background-color: rgb(43, 67, 90);
+}
+
+button {
+  width: 3rem;
+  height: 1rem;
+  font-size: 0.5rem;
+  color: white;
+  background-color: rgb(43, 67, 90);
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
 }
