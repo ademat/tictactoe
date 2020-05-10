@@ -20,7 +20,7 @@ const squareClick = (event) => {
       event.target.classList.add('square--cross');
       if (game_mode === 1) {
         announce_winner(score());
-        if (score) {
+        if (score()) {
           return null;
         }
         pc_decide();
@@ -31,7 +31,7 @@ const squareClick = (event) => {
       event.target.classList.add('square--circle');
       if (game_mode === 1) {
         announce_winner(score());
-        if (score) {
+        if (score()) {
           return null;
         }
         pc_decide();
