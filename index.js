@@ -170,23 +170,28 @@ const pc_decide = () => {
 }
 
 //funkce bere jako vstup vzor, ktery generuje funkce pc_decide
-//tento vzor pocitac prochazi a hraje prvni volne pole, ktere najde
+//tento vzor pocitac prochazi a vybere vsechna volna pole, ze kterych nasledne jedno nahodne vybere a zahraje
 //v pripade, ze pocitac nema zadny potencialne vyherni vzor a ani nemusi branit souperi, vybere si nahodne volne pole
 const pc_play = (pattern_to_play) => {
+  let possible_squares_to_play = [];
   for (let i = 0; i < pattern_to_play.length; i++) {
     if (pattern_to_play[i] === 1) {
       if (gamePlan[i] === 0) {
-        gamePlan[i] = onTurn;
-        const square_elm = document.querySelector(`.square:nth-of-type(${i + 1})`);
-        if (onTurn === 1) {
-          square_elm.classList.add('square--cross');
-        } else {
-          square_elm.classList.add('square--circle');
-        }
-        onTurn = -onTurn;
-        return null;
+        possible_squares_to_play.push(i);
       }
     }
+  }
+  if (possible_squares_to_play.length !== 0) {
+    const square_to_play = possible_squares_to_play[generate_random_index(possible_squares_to_play.length)];
+    gamePlan[square_to_play] = onTurn;
+    const square_elm = document.querySelector(`.square:nth-of-type(${square_to_play + 1})`);
+    if (onTurn === 1) {
+      square_elm.classList.add('square--cross');
+    } else {
+      square_elm.classList.add('square--circle');
+    };
+    onTurn = -onTurn;
+    return null
   }
   for (let i = 0; i < gamePlan.length; i++) {
     if (gamePlan[i] === 0) {
