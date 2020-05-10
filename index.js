@@ -20,6 +20,9 @@ const squareClick = (event) => {
       event.target.classList.add('square--cross');
       if (game_mode === 1) {
         announce_winner(score());
+        if (score) {
+          return null;
+        }
         pc_decide();
       }
     } else {
@@ -28,6 +31,9 @@ const squareClick = (event) => {
       event.target.classList.add('square--circle');
       if (game_mode === 1) {
         announce_winner(score());
+        if (score) {
+          return null;
+        }
         pc_decide();
       }
     }
@@ -81,9 +87,9 @@ const game_status_elm = document.querySelector('.game-status');
 const announce_winner = (index) => {
   if (index) {
     game_status_elm.classList.add('end--game');
-    if (index === 1 || index === -2) {
+    if (index === 1) {
       game_status_elm.textContent = 'Zvitezil krizek';
-    } else if (index === -1 || index === 2) {
+    } else if (index === -1) {
       game_status_elm.textContent = 'Zvitezilo kolecko';
     } else if (index === 10) {
       game_status_elm.textContent = 'Remiza';
