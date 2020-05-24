@@ -253,32 +253,28 @@ const change_sign = () => {
   refresh_game();
 };
 
-// const show_help = () => {
-//   if (!document.querySelector('.help--window')) {
-//     const helperElm = document.createElement('div');
-//     helperElm.innerHTML = document.querySelector('#help-temp').innerHTML;
-//     document.body.appendChild(helperElm.children[0]);
-//   }
-// };
-
-// const hide_help = () => {
-//   if (document.querySelector('.help--window')) {
-//     const helpElm = document.querySelector('.help--window');
-//     document.body.removeChild(helpElm);
-//   }
-// };
-
-const toggle_help = () => {
-  if (document.querySelector('.help--window')) {
-    const helpElm = document.querySelector('.help--window');
-    document.body.removeChild(helpElm);
-  } else {
+const show_help = () => {
+  if (!document.querySelector('.help--window')) {
     const helperElm = document.createElement('div');
     helperElm.innerHTML = document.querySelector('#help-temp').innerHTML;
     document.body.appendChild(helperElm.children[0]);
   }
 };
 
+const hide_help = () => {
+  if (document.querySelector('.help--window')) {
+    const helpElm = document.querySelector('.help--window');
+    document.body.removeChild(helpElm);
+  }
+};
+
+const toggle_help = () => {
+  if (document.querySelector('.help--window')) {
+    hide_help();
+  } else {
+    show_help();
+  }
+};
 
 document.querySelector('#help').addEventListener('click', toggle_help);
 document.querySelector('#help').addEventListener('mouseover', show_help);
