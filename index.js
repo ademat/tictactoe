@@ -253,20 +253,20 @@ const change_sign = () => {
   refresh_game();
 };
 
-const show_help = () => {
-  if (!document.querySelector('.help--window')) {
-    const helperElm = document.createElement('div');
-    helperElm.innerHTML = document.querySelector('#help-temp').innerHTML;
-    document.body.appendChild(helperElm.children[0]);
-  }
-};
+// const show_help = () => {
+//   if (!document.querySelector('.help--window')) {
+//     const helperElm = document.createElement('div');
+//     helperElm.innerHTML = document.querySelector('#help-temp').innerHTML;
+//     document.body.appendChild(helperElm.children[0]);
+//   }
+// };
 
-const hide_help = () => {
-  if (document.querySelector('.help--window')) {
-    const helpElm = document.querySelector('.help--window');
-    document.body.removeChild(helpElm);
-  }
-};
+// const hide_help = () => {
+//   if (document.querySelector('.help--window')) {
+//     const helpElm = document.querySelector('.help--window');
+//     document.body.removeChild(helpElm);
+//   }
+// };
 
 const toggle_help = () => {
   if (document.querySelector('.help--window')) {

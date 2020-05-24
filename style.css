@@ -79,9 +79,12 @@ button {
   padding: 0.3rem;
 }
 
-.help--window img {
+#img {
+  background-image: url("img/patterns.png");
   height: 55%;
   width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .help--window h1 {
