@@ -258,6 +258,7 @@ const show_help = () => {
     const helperElm = document.createElement('div');
     helperElm.innerHTML = document.querySelector('#help-temp').innerHTML;
     document.body.appendChild(helperElm.children[0]);
+    document.querySelector('#cancel').addEventListener('click', hide_help);
   }
 };
 
