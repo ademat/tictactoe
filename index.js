@@ -277,9 +277,13 @@ const toggle_help = () => {
   }
 };
 
-document.querySelector('#help').addEventListener('click', toggle_help);
-document.querySelector('#help').addEventListener('mouseover', show_help);
-document.querySelector('#help').addEventListener('mouseout', hide_help);
+if ('ontouchend' in document) {
+  document.querySelector('#help').addEventListener('click', toggle_help);
+} else {
+  document.querySelector('#help').addEventListener('mouseover', show_help);
+  document.querySelector('#help').addEventListener('mouseout', hide_help);
+}
+
 document.querySelector('#refresh').addEventListener('click', refresh_game);
 document.querySelector('#mode').addEventListener('click', change_mode);
 document.querySelector('#sign').addEventListener('click', change_sign);

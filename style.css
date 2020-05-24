@@ -82,7 +82,7 @@ button {
 
 #img {
   background-image: url("img/patterns.png");
-  height: 55%;
+  height: 50%;
   width: 100%;
   background-size: contain;
   background-repeat: no-repeat;
