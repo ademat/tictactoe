@@ -1,18 +1,17 @@
-'use strict';
 
-//promena znaci, zdali hrajeme s PC (1) nebo s jinym hracem (-1)
+// promena znaci, zdali hrajeme s PC (1) nebo s jinym hracem (-1)
 let game_mode = -1;
-//promena znaci, kdo je na rade. Kolecko (-1), krizek (1)
+// promena znaci, kdo je na rade. Kolecko (-1), krizek (1)
 let onTurn = -1;
-//promena uchovava informaci o stavu hry
+// promena uchovava informaci o stavu hry
 let gamePlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-//funkce, ktera se pousti pri kliknuti na libovolne pole
-//je-li pole prazdne, vlozi do nej hodnotu a vykresli znak hrace
-//hrajeme-li proti pocitaci, spusti se rozhodovaci algoritmus
-//v pripade, ze je pole jiz zabrane, vyskoci alert
+// funkce, ktera se pousti pri kliknuti na libovolne pole
+// je-li pole prazdne, vlozi do nej hodnotu a vykresli znak hrace
+// hrajeme-li proti pocitaci, spusti se rozhodovaci algoritmus
+// v pripade, ze je pole jiz zabrane, vyskoci alert
 const squareClick = (event) => {
-  const index = event.target.dataset.index;
+  const { index } = event.target.dataset;
   if (gamePlan[index] === 0) {
     if (onTurn === 1) {
       gamePlan[index] = 1;
@@ -39,9 +38,9 @@ const squareClick = (event) => {
     }
     announce_winner(score());
   } else {
-    alert('Vyberte prazdne pole.')
+    alert('Vyberte prazdne pole.');
   }
-}
+};
 
 const squares = document.querySelectorAll('.square');
 
@@ -49,16 +48,15 @@ for (let i = 0; i < squares.length; i++) {
   squares[i].addEventListener('click', squareClick);
 }
 
-//pole poli se vsemi moznymi vyhernimi vzory
-const patterns =
-  [
-    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0], [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0], [1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1], [0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0]]
+// pole poli se vsemi moznymi vyhernimi vzory
+const patterns = [
+  [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1], [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0], [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], [0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0], [1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1], [0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0]];
 
-//funkce, ktera prochazi vsemi vyhernimi vzory a porovnava je s aktualnim stavem hry
-//pokud skalarni soucin vychazi 4, vraci hodnotu 1 (vyhral krizek)
-//pokud skalarni soucin vychazi -4, vraci hodnotu -1 (vyhral krizek)
-//funkce rovnez testuje, jestli oba hraci maji sanci vyhrat
-//pokud ne, vraci hodnotu 10(remiza) 
+// funkce, ktera prochazi vsemi vyhernimi vzory a porovnava je s aktualnim stavem hry
+// pokud skalarni soucin vychazi 4, vraci hodnotu 1 (vyhral krizek)
+// pokud skalarni soucin vychazi -4, vraci hodnotu -1 (vyhral krizek)
+// funkce rovnez testuje, jestli oba hraci maji sanci vyhrat
+// pokud ne, vraci hodnotu 10(remiza)
 
 const score = () => {
   for (let j = 0; j < patterns.length; j++) {
@@ -78,12 +76,12 @@ const score = () => {
   if (!cross_possible_patterns.includes('true') && !circle_possible_patterns.includes('true')) {
     return 10;
   }
-}
+};
 
 const game_status_elm = document.querySelector('.game-status');
 
-//funkce bere jako svuj vstup vysledek funkce score
-//ucelem je graficky znazornit vysledek hry
+// funkce bere jako svuj vstup vysledek funkce score
+// ucelem je graficky znazornit vysledek hry
 const announce_winner = (index) => {
   if (index) {
     game_status_elm.classList.add('end--game');
@@ -95,15 +93,13 @@ const announce_winner = (index) => {
       game_status_elm.textContent = 'Remiza';
     }
   }
-}
+};
 
-//funkce generujici nahodna cisla od nuly do length-1
-const generate_random_index = (length) => {
-  return Math.floor(Math.random() * length);
-}
+// funkce generujici nahodna cisla od nuly do length-1
+const generate_random_index = (length) => Math.floor(Math.random() * length);
 
-//funkce testuje, zda-li pocitac muze vyhrat s danym vyhernim vzorem
-//jako vstup se zadava vyherni vzor k otestovani (pattern) a znak, za ktery pocitac hraje (sign)
+// funkce testuje, zda-li pocitac muze vyhrat s danym vyhernim vzorem
+// jako vstup se zadava vyherni vzor k otestovani (pattern) a znak, za ktery pocitac hraje (sign)
 const test_pattern = (pattern, sign) => {
   for (let i = 0; i < pattern.length; i++) {
     if (pattern[i] === 1) {
@@ -113,22 +109,22 @@ const test_pattern = (pattern, sign) => {
     }
   }
   return true;
-}
+};
 
-//funkce testuje vsechny vyherni vzory z pohledu daneho hrace a vraci string tvoreny hodnotami true a false
-//obsahuje-li hodnotu true, hrac ma sanci vyhrat
-//jako vstup bere znak, za ktery hrac hraje (1-krizek, -1 kolecko)
+// funkce testuje vsechny vyherni vzory z pohledu daneho hrace a vraci string tvoreny hodnotami true a false
+// obsahuje-li hodnotu true, hrac ma sanci vyhrat
+// jako vstup bere znak, za ktery hrac hraje (1-krizek, -1 kolecko)
 const test_all_patterns = (sign) => {
-  let possible_patterns = "";
+  let possible_patterns = '';
   for (let i = 0; i < patterns.length; i++) {
     possible_patterns += test_pattern(patterns[i], sign);
   }
   return possible_patterns;
-}
+};
 
-//vstup - znak, za ktery hrac hraje (1-krizek, -1 kolecko)
-//funkce prochazi vsechny vyherni vzory a hleda takovy, ktery je stale mozne zahrat a zaroven v nem chybi jen jeden znak
-//pokud takovy vzor najde, vrati ho
+// vstup - znak, za ktery hrac hraje (1-krizek, -1 kolecko)
+// funkce prochazi vsechny vyherni vzory a hleda takovy, ktery je stale mozne zahrat a zaroven v nem chybi jen jeden znak
+// pokud takovy vzor najde, vrati ho
 const find_winning_pattern = (sign) => {
   for (let j = 0; j < patterns.length; j++) {
     let sum = 0;
@@ -141,27 +137,27 @@ const find_winning_pattern = (sign) => {
       }
     }
   }
-}
+};
 
-//pocitac zacina hru tim, ze si vybere nahodny vyherni vzor
+// pocitac zacina hru tim, ze si vybere nahodny vyherni vzor
 let pc_pattern = patterns[generate_random_index(23)];
 
-//rozhodovaci algoritmus pocitace
-//nejprve zjisti, zdali existuji vzory, se kterymi muze vyhrat
-//pote zjisti, jestli mu v nejakem vyhernim vzoru nechybi posledni znak, jestli ano, ulozi si ho do vzoru, ktery bude hrat
-//jestlize ne, otestuje vzor, ktery hral v minulem kole. V pripade, ze jiz neni hratelny, vygeneruje si novy
-//dale testuje, jestli souper nema vyherni vzor, ve kterem mu chybi posledni znak
-//primarne hraje svuj vyherni vzor, kdyz neni, tak brani souperi, kdyz neni potreba branit, hraje svuj nahodne vygenerovany vzor
+// rozhodovaci algoritmus pocitace
+// nejprve zjisti, zdali existuji vzory, se kterymi muze vyhrat
+// pote zjisti, jestli mu v nejakem vyhernim vzoru nechybi posledni znak, jestli ano, ulozi si ho do vzoru, ktery bude hrat
+// jestlize ne, otestuje vzor, ktery hral v minulem kole. V pripade, ze jiz neni hratelny, vygeneruje si novy
+// dale testuje, jestli souper nema vyherni vzor, ve kterem mu chybi posledni znak
+// primarne hraje svuj vyherni vzor, kdyz neni, tak brani souperi, kdyz neni potreba branit, hraje svuj nahodne vygenerovany vzor
 const pc_decide = () => {
   const all_possible_patterns = test_all_patterns(onTurn);
   const winnning_pattern = find_winning_pattern(onTurn);
   if (all_possible_patterns.includes('true')) {
     if (winnning_pattern) {
       pc_pattern = winnning_pattern;
-    };
+    }
     while (!test_pattern(pc_pattern, onTurn)) {
       pc_pattern = patterns[generate_random_index(23)];
-    };
+    }
   }
   const losing_pattern = find_winning_pattern(-onTurn);
   let pattern_to_play = '';
@@ -173,13 +169,13 @@ const pc_decide = () => {
     pattern_to_play = pc_pattern;
   }
   pc_play(pattern_to_play);
-}
+};
 
-//funkce bere jako vstup vzor, ktery generuje funkce pc_decide
-//tento vzor pocitac prochazi a vybere vsechna volna pole, ze kterych nasledne jedno nahodne vybere a zahraje
-//v pripade, ze pocitac nema zadny potencialne vyherni vzor a ani nemusi branit souperi, vybere si nahodne volne pole
+// funkce bere jako vstup vzor, ktery generuje funkce pc_decide
+// tento vzor pocitac prochazi a vybere vsechna volna pole, ze kterych nasledne jedno nahodne vybere a zahraje
+// v pripade, ze pocitac nema zadny potencialne vyherni vzor a ani nemusi branit souperi, vybere si nahodne volne pole
 const pc_play = (pattern_to_play) => {
-  let possible_squares_to_play = [];
+  const possible_squares_to_play = [];
   for (let i = 0; i < pattern_to_play.length; i++) {
     if (pattern_to_play[i] === 1) {
       if (gamePlan[i] === 0) {
@@ -195,9 +191,9 @@ const pc_play = (pattern_to_play) => {
       square_elm.classList.add('square--cross');
     } else {
       square_elm.classList.add('square--circle');
-    };
+    }
     onTurn = -onTurn;
-    return null
+    return null;
   }
   for (let i = 0; i < gamePlan.length; i++) {
     if (gamePlan[i] === 0) {
@@ -212,9 +208,9 @@ const pc_play = (pattern_to_play) => {
       return null;
     }
   }
-}
+};
 
-//funkce cisti herni plan i jeho graficke zobrazeni
+// funkce cisti herni plan i jeho graficke zobrazeni
 const refresh_game = () => {
   gamePlan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   game_status_elm.classList.remove('end--game');
@@ -228,25 +224,25 @@ const refresh_game = () => {
     onTurn = 1;
   }
   if (game_mode === 1) {
-    pc_pattern = patterns[generate_random_index(23)]
+    pc_pattern = patterns[generate_random_index(23)];
     pc_decide();
   }
-}
+};
 
-//funkce pusti refresh_game a zmeni herni mod 
-//1 = hra proti pocitaci, -1 = hra proti jinemu hraci
+// funkce pusti refresh_game a zmeni herni mod
+// 1 = hra proti pocitaci, -1 = hra proti jinemu hraci
 const change_mode = () => {
   if (game_mode === 1) {
     game_mode = -1;
-    document.querySelector('#mode').textContent = 'Player'
+    document.querySelector('#mode').textContent = 'Player';
   } else {
     game_mode = 1;
-    document.querySelector('#mode').textContent = 'PC'
+    document.querySelector('#mode').textContent = 'PC';
   }
   refresh_game();
-}
+};
 
-//funkce pusti refresh_game a zmeni znak, za ktery hraje hrac 1
+// funkce pusti refresh_game a zmeni znak, za ktery hraje hrac 1
 const change_sign = () => {
   const signElm = document.querySelector('#sign');
   if (signElm.textContent === 'X') {
@@ -255,10 +251,38 @@ const change_sign = () => {
     signElm.textContent = 'X';
   }
   refresh_game();
-}
+};
+
+const show_help = () => {
+  if (!document.querySelector('.help--window')) {
+    const helperElm = document.createElement('div');
+    helperElm.innerHTML = document.querySelector('#help-temp').innerHTML;
+    document.body.appendChild(helperElm.children[0]);
+  }
+};
+
+const hide_help = () => {
+  if (document.querySelector('.help--window')) {
+    const helpElm = document.querySelector('.help--window');
+    document.body.removeChild(helpElm);
+  }
+};
+
+const toggle_help = () => {
+  if (document.querySelector('.help--window')) {
+    const helpElm = document.querySelector('.help--window');
+    document.body.removeChild(helpElm);
+  } else {
+    const helperElm = document.createElement('div');
+    helperElm.innerHTML = document.querySelector('#help-temp').innerHTML;
+    document.body.appendChild(helperElm.children[0]);
+  }
+};
 
 
+document.querySelector('#help').addEventListener('click', toggle_help);
+document.querySelector('#help').addEventListener('mouseover', show_help);
+document.querySelector('#help').addEventListener('mouseout', hide_help);
 document.querySelector('#refresh').addEventListener('click', refresh_game);
 document.querySelector('#mode').addEventListener('click', change_mode);
 document.querySelector('#sign').addEventListener('click', change_sign);
-

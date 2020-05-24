@@ -27,10 +27,22 @@
       <div class="square" data-index="15"></div>
     </div>
     <div>
+      <button id="help">?</button>
       <button id="mode">Player</button>
       <button id="refresh">Refresh</button>
       <button id="sign">O</button>
     </div>
+    <template id="help-temp">
+      <div class="help--window">
+        <h1>Nápověda</h1>
+        <p>1) Pro spuštění režimu hry proti počítači klikněte na "Player"</p>
+        <p>2) Pro obnovení hry klikněte na "Refresh"</p>
+        <p>3) Pro změnu symbolu, za který hrajete, klikněte na "O"</p>
+        <p>4) Výherní vzory:</p>
+        <img src="/img/patterns.png" alt="vyherni_vzory" />
+      </div>
+    </template>
+
     <script src="index.js"></script>
   </body>
 </html>
